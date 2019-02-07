@@ -2,23 +2,24 @@ package com.wave.mvpexample.root;
 
 import android.app.Application;
 
-import com.renegens.mvpexample.login.LoginModule;
+import com.wave.mvpexample.login.LoginModule;
+
 
 public class App extends Application {
 
-    private ApplicationComponent component;
+    private AppComponent component;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        component = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this))
+        component = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
                 .loginModule(new LoginModule())
                 .build();
     }
 
-    public ApplicationComponent getComponent() {
+    public AppComponent getComponent() {
         return component;
     }
 }

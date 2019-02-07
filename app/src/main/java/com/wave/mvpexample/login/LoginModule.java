@@ -1,5 +1,9 @@
 package com.wave.mvpexample.login;
 
+import com.wave.mvpexample.data.model.LoginModel;
+import com.wave.mvpexample.data.repo.LoginRepository;
+import com.wave.mvpexample.data.repo.MemoryRepository;
+
 import dagger.Module;
 import dagger.Provides;
 

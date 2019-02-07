@@ -7,8 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.renegens.mvpexample.R;
-import com.renegens.mvpexample.root.App;
+import com.wave.mvpexample.R;
+import com.wave.mvpexample.root.App;
 
 import javax.inject.Inject;
 

@@ -1,4 +1,7 @@
-package com.wave.mvpexample.login;
+package com.wave.mvpexample.data.repo;
+
+import com.wave.mvpexample.data.model.User;
+import com.wave.mvpexample.data.repo.LoginRepository;
 
 public class MemoryRepository implements LoginRepository {
 
@@ -8,7 +11,7 @@ public class MemoryRepository implements LoginRepository {
     public User getUser() {
 
         if (user == null) {
-            User user = new User("Fox", "Mulder");
+            User user = new User("Dinesh", "Kumar");
             user.setId(0);
             return user;
         } else {

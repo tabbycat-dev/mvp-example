@@ -1,4 +1,4 @@
-package com.wave.mvpexample.login;
+package com.wave.mvpexample.data.model;
 
 public class User {
 

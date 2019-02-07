@@ -1,5 +1,7 @@
 package com.wave.mvpexample.login;
 
+import com.wave.mvpexample.data.model.User;
+
 public interface LoginActivityMVP {
 
     interface View{

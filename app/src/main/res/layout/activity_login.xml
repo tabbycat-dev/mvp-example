@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.renegens.mvpexample.login.LoginActivity">
+    android:gravity="center"
+    android:padding="@dimen/_8dp">
 
 
     <EditText
@@ -20,13 +21,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Last Name"
-
+        android:layout_marginTop="@dimen/_8dp"
         tools:text="Last Name" />
 
     <Button
         android:id="@+id/loginActivity_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="@dimen/_16dp"
         android:text="Log in" />
 
 </LinearLayout>

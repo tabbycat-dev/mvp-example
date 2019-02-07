@@ -2,6 +2,8 @@ package com.wave.mvpexample.login;
 
 import android.support.annotation.Nullable;
 
+import com.wave.mvpexample.data.model.User;
+
 public class LoginActivityPresenter implements LoginActivityMVP.Presenter {
 
     @Nullable
