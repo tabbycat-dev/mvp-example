@@ -1,6 +1,5 @@
 package com.wave.mvpexample.data.model;
 
-import com.wave.mvpexample.data.model.User;
 import com.wave.mvpexample.data.repo.LoginRepository;
 import com.wave.mvpexample.login.LoginActivityMVP;
 

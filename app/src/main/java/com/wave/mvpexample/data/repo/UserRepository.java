@@ -1,9 +1,8 @@
 package com.wave.mvpexample.data.repo;
 
 import com.wave.mvpexample.data.model.User;
-import com.wave.mvpexample.data.repo.LoginRepository;
 
-public class MemoryRepository implements LoginRepository {
+public class UserRepository implements LoginRepository {
 
     private User user;
 
