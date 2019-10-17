@@ -25,4 +25,8 @@ public class User {
         return lastName;
     }
 
+    public User(String email) {
+        this.firstName = email;
+    }
+
 }

@@ -22,7 +22,8 @@ public class LoginModule {
     }
 
     @Provides
-    public LoginRepository provideLoginRepository(){
+    public LoginRepository provideLoginRepository()
+    {
         return new UserRepository();
     }
 }

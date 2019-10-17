@@ -16,6 +16,12 @@ public interface LoginActivityMVP {
         void setLastName(String lastName);
 
         void showUserSavedMessage();
+
+        void showUserNotAvailable();
+
+        void showUserSignout();
+
+
     }
 
     interface Presenter {
@@ -26,6 +32,8 @@ public interface LoginActivityMVP {
 
         void getCurrentUser();
 
+        void signoutButtonClicked();
+
     }
 
     interface Model {
@@ -33,6 +41,14 @@ public interface LoginActivityMVP {
         void createUser(String name, String lastName);
 
         User getUser();
+
+        User getFireBaseUser();
+
+        void loginUser(String name, String lastname);
+
+        boolean checkLogin();
+
+        void signoutUser();
 
 
 

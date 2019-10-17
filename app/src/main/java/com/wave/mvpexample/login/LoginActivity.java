@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
 
     private EditText firstName;
     private EditText lastName;
-    private Button login;
+    private Button login, signout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,19 +32,24 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
         firstName = (EditText) findViewById(R.id.loginActivity_firstName_editText);
         lastName = (EditText) findViewById(R.id.loginActivity_lastName_editText);
         login = (Button) findViewById(R.id.loginActivity_login_button);
+        signout = (Button) findViewById(R.id.loginActivity_btn_signout);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 presenter.loginButtonClicked();
+            }
+        });
+        signout.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                presenter.signoutButtonClicked();
 
             }
         });
 
-
     }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -65,9 +70,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     @Override
     public void showInputError() {
         Toast.makeText(this, "First Name or last name cannot be empty", Toast.LENGTH_SHORT).show();
-
     }
-
     @Override
     public void setFirstName(String firstName) {
         this.firstName.setText(firstName);
@@ -81,6 +84,14 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     @Override
     public void showUserSavedMessage() {
         Toast.makeText(this, "User saved successfully", Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public void showUserNotAvailable() {
+        Toast.makeText(this, "User is not available", Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public void showUserSignout() {
+        Toast.makeText(this, "User signed out", Toast.LENGTH_SHORT).show();
 
     }
 }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "462323283072",
+    "firebase_url": "https://mvpexample-66cd0.firebaseio.com",
+    "project_id": "mvpexample-66cd0",
+    "storage_bucket": "mvpexample-66cd0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462323283072:android:14d168f9bebe33a3be2265",
+        "android_client_info": {
+          "package_name": "com.wave.mvpexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "462323283072-9v83id67legkurolg5gg52jdopnanvof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAacsiVkhgY4q8tZt7zqvl6t3766GFeFjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "462323283072-9v83id67legkurolg5gg52jdopnanvof.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
