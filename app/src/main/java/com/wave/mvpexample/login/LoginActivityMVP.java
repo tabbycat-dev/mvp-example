@@ -1,19 +1,23 @@
 package com.wave.mvpexample.login;
 
-import com.wave.mvpexample.data.model.User;
+import com.wave.mvpexample.utils.User;
 
+/*
+* contains all use case of the app
+* */
 public interface LoginActivityMVP {
 
     interface View{
 
-        String getFirstName();
-        String getLastName();
+        String getEmail();
+
+        String getPassword();
 
         void showInputError();
 
-        void setFirstName(String firstName);
+        void setEmail(String email);
 
-        void setLastName(String lastName);
+        void setPassword(String password);
 
         void showUserSavedMessage();
 
@@ -21,9 +25,10 @@ public interface LoginActivityMVP {
 
         void showUserSignout();
 
-
     }
-
+/*
+* Use case of sign up / sign in / sign out
+* */
     interface Presenter {
 
         void setView(View view);

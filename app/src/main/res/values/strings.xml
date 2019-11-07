@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">MvpExample</string>
+        <string name="title_activity_sign_in">SignInActivity</string>
+        <string name="login_heading">Log in</string>
+
+        <string name="email">Email</string>
+        <string name="password">Password</string>
+        <string name="login">Log in</string>
+
+        <string name="roleList">Choose who you are</string>
+        <string-array name="role_array">
+            <item>Student</item>
+            <item>Teacher</item>
+        </string-array>
+        <string name="title_activity_maps">Map</string>
+
+
+        <string name="title_activity_maps2">Map</string>
+        <string name="location_permission_denied">Location Permission denied</string>
+        <string name="permission_required_toast">Permission REQUIRE TOAST</string>
+        <string name="permission_rationale_location">permission rationale location</string>
+        <string name="title_activity_maps3">Map</string>
+        <string name="title_activity_main2">Main2Activity</string>
+        <string name="title_home">Home</string>
+        <string name="title_dashboard">Dashboard</string>
+        <string name="title_notifications">Notifications</string>
+        <string name="title_activity_tutor_add_class">TutorAddClass</string>
+        <string name="undo_string">UNDO</string>
+        <string name="class_added">1 class is added.</string>
+
+        <!-- TODO: Remove or change this placeholder text -->
+        <string name="register_heading">Register</string>
+        <string name="retype_password">Retype password</string>
+        <string name="name">Full name</string>
+        <string name="register">Register</string>
+
+        <string name="signout">Sign Out</string>
+
+
 </resources>

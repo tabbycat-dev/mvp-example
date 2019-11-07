@@ -1,9 +1,9 @@
 package com.wave.mvpexample.login;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
-import com.wave.mvpexample.data.model.User;
+import com.wave.mvpexample.utils.User;
 
 public class LoginActivityPresenter implements LoginActivityMVP.Presenter {
 
@@ -17,23 +17,20 @@ public class LoginActivityPresenter implements LoginActivityMVP.Presenter {
 
     @Override
     public void setView(LoginActivityMVP.View view) {
-
         this.view = view;
-
     }
-
     @Override
     public void loginButtonClicked() {
 
         if (view != null) {
-            if (view.getFirstName().trim().equals("") || view.getLastName().trim().equals("")) {
+            if (view.getEmail().trim().equals("") || view.getPassword().trim().equals("")) {
                 view.showInputError();
             } else {
 
                 //model.createUser(view.getFirstName(), view.getLastName());
                 //model.createUser(view.getFirstName(), view.getLastName());
                 //view.showUserSavedMessage();
-                model.loginUser(view.getFirstName(), view.getLastName());
+                model.loginUser(view.getEmail(), view.getPassword());
                 //view.showUserSavedMessage();
                 boolean isLogin = model.checkLogin();
 
@@ -63,9 +60,14 @@ public class LoginActivityPresenter implements LoginActivityMVP.Presenter {
 
         if (user != null) {
             if (view != null) {
-                view.setFirstName(user.getFirstName());
-                view.setLastName(user.getLastName());
+                view.setEmail(user.getFirstName());
+                view.setPassword(user.getLastName());
             }
+        }else{
+            if (view != null) {
+                view.showUserNotAvailable();
+            }
+
         }
     }
 

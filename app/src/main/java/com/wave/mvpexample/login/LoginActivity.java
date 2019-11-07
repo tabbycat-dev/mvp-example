@@ -1,14 +1,20 @@
 package com.wave.mvpexample.login;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.wave.mvpexample.R;
 import com.wave.mvpexample.root.App;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import javax.inject.Inject;
 
@@ -17,9 +23,18 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     @Inject
     LoginActivityMVP.Presenter presenter;
 
+    @BindView(R.id.et_email)
+    EditText email_et;
 
-    private EditText firstName;
-    private EditText lastName;
+    @BindView(R.id.et_password)
+    EditText password_et;
+
+    FirebaseAuth mAuth ;
+    private final String TAG = "LOGIN";
+
+    @BindView(R.id.spinnerRole)
+    Spinner spinnerRole;
+
     private Button login, signout;
 
     @Override
@@ -28,28 +43,17 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
         setContentView(R.layout.activity_login);
 
         ((App) getApplication()).getComponent().inject(this);
-
-        firstName = (EditText) findViewById(R.id.loginActivity_firstName_editText);
-        lastName = (EditText) findViewById(R.id.loginActivity_lastName_editText);
-        login = (Button) findViewById(R.id.loginActivity_login_button);
-        signout = (Button) findViewById(R.id.loginActivity_btn_signout);
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.loginButtonClicked();
-            }
-        });
-        signout.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                presenter.signoutButtonClicked();
-
-            }
-        });
-
+        ButterKnife.bind(this);
     }
+
+    @OnClick(R.id.signoutButton) void signOutClicked(){
+        presenter.signoutButtonClicked();
+    }
+
+    @OnClick(R.id.btnLogin) void loginClicked(){
+        presenter.loginButtonClicked();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -58,13 +62,13 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     }
 
     @Override
-    public String getFirstName() {
-        return firstName.getText().toString();
+    public String getEmail() {
+        return email_et.getText().toString();
     }
 
     @Override
-    public String getLastName() {
-        return lastName.getText().toString();
+    public String getPassword() {
+        return password_et.getText().toString();
     }
 
     @Override
@@ -72,13 +76,13 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
         Toast.makeText(this, "First Name or last name cannot be empty", Toast.LENGTH_SHORT).show();
     }
     @Override
-    public void setFirstName(String firstName) {
-        this.firstName.setText(firstName);
+    public void setEmail(String email) {
+        this.email_et.setText(email);
     }
 
     @Override
-    public void setLastName(String lastName) {
-        this.lastName.setText(lastName);
+    public void setPassword(String password) {
+        this.password_et.setText(password);
     }
 
     @Override

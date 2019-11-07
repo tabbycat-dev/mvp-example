@@ -1,13 +1,15 @@
-package com.wave.mvpexample.data.repo;
+package com.wave.mvpexample.model.repository;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.wave.mvpexample.data.model.User;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.wave.mvpexample.utils.User;
 
 public class UserRepository implements LoginRepository {
 
@@ -18,7 +20,7 @@ public class UserRepository implements LoginRepository {
     @Override
     public User getUser() {
         if (user == null) {
-            User user = new User("Dinesh", "Kumar");
+            User user = new User("tan@gmail.com", "tan123");
             user.setId(0);
             return user;
         } else {
@@ -38,9 +40,9 @@ public class UserRepository implements LoginRepository {
 
     @Override
     public void createUserFireBase(User user) {
-        if (user == null) {
-            user = getUser();
-        }
+        //if (user == null) {
+        //    user = getUser();
+        //}
         String email = user.getFirstName();
         String password = user.getLastName();
         Log.i("USER","CLICKED FIREBASE" );
@@ -76,7 +78,19 @@ public class UserRepository implements LoginRepository {
                             Log.i("USER", "login Fail " + task.getException().getMessage());
                         }
                     }
-                });
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        if (e instanceof FirebaseAuthUserCollisionException) {
+                            Log.i("USER", "login Fail " + "This email address is already in use.");
+                        }
+                        else {
+                            Log.i("USER", "login Fail " + e.getLocalizedMessage());
+                        }
+                    }
+                })
+        ;
     }
 
     @Override

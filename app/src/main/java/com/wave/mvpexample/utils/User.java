@@ -1,4 +1,4 @@
-package com.wave.mvpexample.data.model;
+package com.wave.mvpexample.utils;
 
 public class User {
 

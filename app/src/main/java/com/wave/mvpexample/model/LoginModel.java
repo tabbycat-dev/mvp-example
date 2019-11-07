@@ -1,6 +1,7 @@
-package com.wave.mvpexample.data.model;
+package com.wave.mvpexample.model;
 
-import com.wave.mvpexample.data.repo.LoginRepository;
+import com.wave.mvpexample.utils.User;
+import com.wave.mvpexample.model.repository.LoginRepository;
 import com.wave.mvpexample.login.LoginActivityMVP;
 
 public class LoginModel implements LoginActivityMVP.Model {

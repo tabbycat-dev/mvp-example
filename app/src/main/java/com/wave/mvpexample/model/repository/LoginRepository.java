@@ -1,6 +1,6 @@
-package com.wave.mvpexample.data.repo;
+package com.wave.mvpexample.model.repository;
 
-import com.wave.mvpexample.data.model.User;
+import com.wave.mvpexample.utils.User;
 
 public interface LoginRepository {
 
