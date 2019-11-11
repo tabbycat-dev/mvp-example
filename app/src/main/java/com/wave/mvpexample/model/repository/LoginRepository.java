@@ -4,12 +4,12 @@ import com.wave.mvpexample.utils.User;
 
 public interface LoginRepository {
 
-    User getUser();
+    String loginUser(String email, String password);
+    User getCurrentUser();
+
 
     void saveUser(User user);
-
     void createUserFireBase(User user);
-    void loginUser(User user);
     User getFireBaseUser();
     boolean isLogin();
     void signoutUser();

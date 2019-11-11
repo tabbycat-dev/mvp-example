@@ -12,16 +12,23 @@ public class LoginModel implements LoginActivityMVP.Model {
         this.repository = repository;
     }
 
+
+    @Override
+    public String loginUser(String email, String password) {
+
+        return repository.loginUser(email, password);
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return repository.getCurrentUser();
+    }
+
     @Override
     public void createUser(String name, String lastName) {
 
         //repository.saveUser(new User(name, lastName));
-        repository.createUserFireBase(new User(name, lastName));
-    }
-
-    @Override
-    public User getUser() {
-        return repository.getUser();
+        repository.createUserFireBase(new User(name));
     }
 
     @Override
@@ -29,11 +36,6 @@ public class LoginModel implements LoginActivityMVP.Model {
         return repository.getFireBaseUser();
     }
 
-    @Override
-    public void loginUser(String name, String lastname) {
-
-        repository.loginUser(new User(name, lastname));
-    }
 
     public boolean checkLogin(){
         return repository.isLogin();

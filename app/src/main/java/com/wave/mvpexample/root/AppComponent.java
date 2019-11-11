@@ -8,7 +8,9 @@ import com.wave.mvpexample.login.LoginModule;
 import javax.inject.Singleton;
 
 import dagger.Component;
-
+/*
+* Inject class
+* */
 @Singleton
 @Component(modules = {AppModule.class, LoginModule.class})
 public interface AppComponent {

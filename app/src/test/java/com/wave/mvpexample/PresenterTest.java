@@ -27,11 +27,8 @@ public class PresenterTest {
         mockLoginModel = mock(LoginActivityMVP.Model.class);
         mockView =mock(LoginActivityMVP.View.class);
         presenter = new LoginActivityPresenter(mockLoginModel);
-
         presenter.setView(mockView);
-
         user = new User("tan@gmail.com", "tan123");
-
     }
     @Test
     public void noInteractionWithView(){
@@ -41,14 +38,14 @@ public class PresenterTest {
     }
     @Test
     public void loadTheUserFromTheRepoWhenValidUserIsPresent(){
-        when(mockLoginModel.getUser()).thenReturn(user);
+        when(mockLoginModel.getCurrentUser()).thenReturn(user);
         presenter.getCurrentUser();
         //verify model interactions
         verify(mockLoginModel, times(1)).getUser();
 
         //verify view interactions
-        verify(mockView, times(1)).setFirstName("tan@gmail.com");
-        verify(mockView, times(1)).setLastName("tan123");
+        verify(mockView, times(1)).setEmail("tan@gmail.com");
+        verify(mockView, times(1)).setPassword("tan123");
         verify(mockView, never()).showUserNotAvailable();
     }
     @Test
@@ -60,13 +57,13 @@ public class PresenterTest {
         verify(mockLoginModel, times(1)).getUser();
 
         //verify view interactions
-        verify(mockView, never()).setFirstName("tan@gmail.com");
-        verify(mockView, never()).setLastName("tan123");
+        verify(mockView, never()).setEmail("tan@gmail.com");
+        verify(mockView, never()).setPassword("tan123");
         verify(mockView, times(1)).showUserNotAvailable();
     }
     @Test
     public void createErrorMsgIfFieldsAreEmpty(){
-        when(mockView.getFirstName()).thenReturn("");
+        when(mockView.getEmail()).thenReturn("");
 
         presenter.loginButtonClicked();
 
@@ -74,22 +71,22 @@ public class PresenterTest {
         verifyZeroInteractions(mockLoginModel);
 
         //verify view interactions
-        verify(mockView, times(1)).getFirstName();//once
-        verify(mockView, never()).getLastName();
-        verify(mockView, times(1)).showInputError();//onece
+        verify(mockView, times(1)).getEmail();//once
+        verify(mockView, never()).getPassword();
+        verify(mockView, times(1)).showInputEmailError();//onece
 
         //now tell mockView to return a value for first name and an empty last name
-        when(mockView.getFirstName()).thenReturn("Tan");
-        when(mockView.getLastName()).thenReturn("");
+        when(mockView.getEmail()).thenReturn("Tan");
+        when(mockView.getPassword()).thenReturn("");
 
         presenter.loginButtonClicked();
 
         //verify model interactions
         verifyZeroInteractions(mockLoginModel);
 
-        verify(mockView, times(2)).getFirstName();//twice
-        verify(mockView, times(1)).getLastName();//once
-        verify(mockView, times(2)).showInputError();//twice
+        verify(mockView, times(2)).getEmail();//twice
+        verify(mockView, times(1)).getPassword();//once
+        verify(mockView, times(2)).showInputEmailError();//twice
     }
 
 }

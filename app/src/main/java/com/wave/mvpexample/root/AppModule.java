@@ -7,7 +7,10 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-
+/*
+* keep track of dependencies, create module for every feature we build
+*
+* */
 @Module
 public class AppModule {
 
@@ -17,6 +20,10 @@ public class AppModule {
         this.application = application;
     }
 
+    /*
+    * singleton signal instance should only create once in app
+    * provides: part of dependency list
+    * */
     @Provides
     @Singleton
     public Context provideContext() {

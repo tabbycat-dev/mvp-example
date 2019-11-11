@@ -13,15 +13,27 @@ public interface LoginActivityMVP {
 
         String getPassword();
 
-        void showInputError();
+        void showInputEmailError();
+
+        void showInputPasswordError();
+
+        void showUserLoginSuccess();
+
+        void showUserLoginFailure();
+
+        void startProgressDialog();
+
+        void endProgressDialog();
+
+        void showUserLoginError(String error);
+
+        void goToStudentActivity();
+
+
 
         void setEmail(String email);
 
         void setPassword(String password);
-
-        void showUserSavedMessage();
-
-        void showUserNotAvailable();
 
         void showUserSignout();
 
@@ -35,21 +47,24 @@ public interface LoginActivityMVP {
 
         void loginButtonClicked();
 
-        void getCurrentUser();
-
-        void signoutButtonClicked();
 
     }
 
     interface Model {
 
+        String loginUser(String name, String lastname);
+
+        User getCurrentUser();
+
+
+
+
+
         void createUser(String name, String lastName);
 
-        User getUser();
 
         User getFireBaseUser();
 
-        void loginUser(String name, String lastname);
 
         boolean checkLogin();
 

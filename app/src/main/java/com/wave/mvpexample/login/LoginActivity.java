@@ -1,16 +1,19 @@
 package com.wave.mvpexample.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.wave.mvpexample.R;
 import com.wave.mvpexample.root.App;
+import com.wave.mvpexample.studentActivity.CheckClassActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +38,14 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     @BindView(R.id.spinnerRole)
     Spinner spinnerRole;
 
+    @BindView(R.id.progressbar)
+    ProgressBar progressBar;
+
+    @BindView(R.id.btnLogin)
+    Button btnLogin;
+
     private Button login, signout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +57,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     }
 
     @OnClick(R.id.signoutButton) void signOutClicked(){
-        presenter.signoutButtonClicked();
+       // presenter.signoutButtonClicked();
     }
 
     @OnClick(R.id.btnLogin) void loginClicked(){
@@ -58,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     protected void onResume() {
         super.onResume();
         presenter.setView(this);
-        presenter.getCurrentUser();
+        //presenter.getCurrentUser();
     }
 
     @Override
@@ -72,9 +82,47 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     }
 
     @Override
-    public void showInputError() {
-        Toast.makeText(this, "First Name or last name cannot be empty", Toast.LENGTH_SHORT).show();
+    public void showInputEmailError() {
+        email_et.setError("Please enter valid email!");
     }
+
+    @Override
+    public void showInputPasswordError() {
+        password_et.setError("Please enter valid password!");
+    }
+
+    @Override
+    public void showUserLoginSuccess() {
+        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showUserLoginFailure() {
+        Toast.makeText(this, "Login failure", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void startProgressDialog() {
+        btnLogin.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE); // To show the ProgressBar
+    }
+    @Override
+    public void endProgressDialog() {
+        btnLogin.setEnabled(true);
+        progressBar.setVisibility(View.INVISIBLE); // To hide the ProgressBar
+    }
+
+    @Override
+    public void showUserLoginError(String error) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void goToStudentActivity() {
+        Intent i = new Intent (getApplicationContext(), CheckClassActivity.class);
+        startActivity(i);
+    }
+
     @Override
     public void setEmail(String email) {
         this.email_et.setText(email);
@@ -85,17 +133,13 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
         this.password_et.setText(password);
     }
 
-    @Override
-    public void showUserSavedMessage() {
-        Toast.makeText(this, "User saved successfully", Toast.LENGTH_SHORT).show();
-    }
-    @Override
-    public void showUserNotAvailable() {
-        Toast.makeText(this, "User is not available", Toast.LENGTH_SHORT).show();
-    }
+
     @Override
     public void showUserSignout() {
         Toast.makeText(this, "User signed out", Toast.LENGTH_SHORT).show();
 
     }
+
+
+
 }
