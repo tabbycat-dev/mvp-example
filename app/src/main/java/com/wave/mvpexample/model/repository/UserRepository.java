@@ -25,7 +25,7 @@ public class UserRepository implements LoginRepository {
     private final String FAILURE = "failure";
     private final String ERROR_1 = "signInWithEmail:invalid password";
     private final String ERROR_2 = "signInWithEmail:No account with this email";
-    private String result = "";
+    private String result="";
 
     @Override
     public User getCurrentUser() {
@@ -46,11 +46,11 @@ public class UserRepository implements LoginRepository {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.i("LOGIN", "login Success " + task.getResult().getUser().getEmail());
+                            Log.i("USER REPO", "login Success " + task.getResult().getUser().getEmail());
                             user = new User(email);
                             result = SUCCESS;
                         } else {
-                            Log.i("LOGIN", "login Fail " + task.getException().getMessage());
+                            Log.i("USER REPO", "login Fail " + task.getException().getMessage());
                             result = FAILURE;
                         }
                     }
@@ -60,19 +60,19 @@ public class UserRepository implements LoginRepository {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                            Log.i("LOGIN", "signInWithEmail:invalid password");
+                            Log.i("USER REPO", "signInWithEmail:invalid password");
                             result = ERROR_1;
+
                         } else if (e instanceof FirebaseAuthInvalidUserException) {
-                            Log.i("LOGIN", "signInWithEmail:No account with this email");
+                            Log.i("USER REPO", "signInWithEmail:No account with this email");
                             result = ERROR_2;
                         } else {
-                            Log.i("LOGIN", e.getLocalizedMessage());
+                            Log.i("USER REPO", e.getLocalizedMessage());
                             result = e.getLocalizedMessage();
-
                         }
                     }
-                })
-        ;
+                });
+        Log.i("USER REPO", result);
         return result;
     }
 

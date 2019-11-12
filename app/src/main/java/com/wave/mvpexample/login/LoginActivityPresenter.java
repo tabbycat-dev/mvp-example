@@ -28,68 +28,38 @@ public class LoginActivityPresenter implements LoginActivityMVP.Presenter {
         this.view = view;
     }
 
-
     @Override
     public void loginButtonClicked() {
 
         if (view != null) {
-
-            if (view.getEmail().trim().equals("") || view.getPassword().trim().equals("")) {
+            //boolean valid = true;
+            if (view.getEmail().trim().equals("")|| !android.util.Patterns.EMAIL_ADDRESS.matcher(view.getEmail().trim()).matches()) {
                 view.showInputEmailError();
-
+            }
+            else if (view.getPassword().trim().equals("")) {
+                view.showInputPasswordError();
             } else {
                 view.startProgressDialog();
                 String email = view.getEmail();
                 String password = view.getPassword();
-
-                MyTask myTask = new MyTask();
-                myTask.execute(email, password);
-
-
-            }
-        }
-    }
-
-    public class MyTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            String result = model.loginUser(params[0], params[1]);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            view.endProgressDialog();
-            if (result != null) {
-                if (result.equals(SUCCESS)){
-                    if (view != null) {
+                String result = model.loginUser(email, password);
+                Log.i("PRESENTER", "0-result: "+result);
+                if (result != null) {
+                    view.endProgressDialog();
+                    if (result.equals(SUCCESS)) {
                         view.showUserLoginSuccess();
-                        Log.i("LOGIN", "loginButtonClicked true");
+                        Log.i("PRESENTER", "1-loginButtonClicked true");
                         view.goToStudentActivity();
-                }
-
-                }
-            } else if(result.equals(FAILURE)) {
-                if (view != null) {
-                    view.showUserLoginFailure();
-                    Log.i("LOGIN", "loginButtonClicked false");
-
-                }
-            }else {
-                if (view != null) {
-                    view.showUserLoginError(result);
-                    Log.i("LOGIN", "loginButtonClicked false");
-
+                    } else if (result.equals(FAILURE)) {
+                        view.showUserLoginFailure();
+                        Log.i("PRESENTER", "2-loginButtonClicked false");
+                    } else {
+                        //view.showUserLoginError("LOGIN UNKNOWN");
+                        view.showUserLoginFailure();
+                        Log.i("PRESENTER", "3-loginButtonClicked UNKNOWN");
+                    }
                 }
             }
         }
     }
-
-
 }

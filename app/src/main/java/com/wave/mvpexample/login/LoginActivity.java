@@ -56,10 +56,6 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.signoutButton) void signOutClicked(){
-       // presenter.signoutButtonClicked();
-    }
-
     @OnClick(R.id.btnLogin) void loginClicked(){
         presenter.loginButtonClicked();
     }
